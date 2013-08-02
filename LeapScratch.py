@@ -68,13 +68,13 @@ class LeapListener(Leap.Listener):
 
 	    for i in xrange(0,2):
 	    	if hand[i].is_valid:
-			hands_array[i][1] = hand[i].palm_position
+			hands_array[i][1] = hand[i].stabilized_palm_position
 
 			fingers = hand[i].fingers
 			if not fingers.empty:
 				count = i * 5
 				for finger in fingers:
-					fingers_array[count][1] = finger.tip_position
+					fingers_array[count][1] = finger.stabilized_tip_position
 					count += 1
 	    
 	    if scratch_thread.is_registered:
