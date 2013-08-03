@@ -28,7 +28,7 @@ elif plat == 'Windows':
 	if arch == 'AMD64':
 		sys.path.insert(0, 'lib/Windows/x64')
 	else:
-		sys.path.insert(0, 'lib/Windows/x64')
+		sys.path.insert(0, 'lib/Windows/x86')
 
 import Leap
 
