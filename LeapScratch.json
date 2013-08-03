@@ -1,5 +1,5 @@
 {
-	"extensionName": "LeapMotion",
+	"extensionName": "LeapScratch",
 	"extensionPort": 50007,
 	"blockSpecs": [
 		["r", "Hand-1 X", "hand-one-x"],
@@ -8,6 +8,12 @@
                 ["r", "Hand-2 X", "hand-two-x"],
                 ["r", "Hand-2 Y", "hand-two-y"],
                 ["r", "Hand-2 Z", "hand-two-z"],
+		["r", "Hand-1-Tool X", "tool-one-x"],
+		["r", "Hand-1-Tool Y", "tool-one-y"],
+		["r", "Hand-1-Tool Z", "tool-one-z"],
+		["r", "Hand-2-Tool X", "tool-two-x"],
+		["r", "Hand-2-Tool Y", "tool-two-y"],
+		["r", "Hand-2-Tool Z", "tool-two-z"],
 		["r", "Hand-1-Finger-1 X", "finger-one-x"],
 		["r", "Hand-1-Finger-1 Y", "finger-one-y"],
 		["r", "Hand-1-Finger-1 Z", "finger-one-z"],

@@ -35,6 +35,9 @@ import Leap
 hands_array = [['hand-one',[0,0,0]],
 	       ['hand-two',[0,0,0]]]
 
+tools_array = [['tool-one',[0,0,0]],
+	       ['tool-two',[0,0,0]]]
+
 fingers_array = [['finger-one',[0,0,0]],
 		 ['finger-two',[0,0,0]],
 		 ['finger-three',[0,0,0]],
@@ -72,6 +75,13 @@ class LeapListener(Leap.Listener):
 				hands_array[i][1] = hand[i].stabilized_palm_position
 			else:
 				hands_array[i][1] = hand[i].palm_position
+
+			if not hand[i].tools.empty:
+				if not plat == 'Linux':
+					tools_array[i][1] = hand[i].tools[0].stabilized_tip_position
+				else:
+					tools_array[i][1] = hand[i].tools[0].tip_position
+
 			fingers = hand[i].fingers
 			if not fingers.empty:
 				count = i * 5
@@ -88,6 +98,10 @@ class LeapListener(Leap.Listener):
 				response += '["' + hands_array[i][0] + '-x","' + str(int(hands_array[i][1][0] + 50)) + '"],' \
 					    '["' + hands_array[i][0] + '-y","' + str(int((hands_array[i][1][1] - 220) * 1.6)) + '"],' \
 					    '["' + hands_array[i][0] + '-z","' + str(int(hands_array[i][1][2])) + '"],'
+			for i in xrange(0, 2):
+				response += '["' + tools_array[i][0] + '-x","' + str(int(tools_array[i][1][0])) + '"],' \
+					    '["' + tools_array[i][0] + '-y","' + str(int((tools_array[i][1][1] - 220) * 1.6)) + '"],' \
+					    '["' + tools_array[i][0] + '-z","' + str(int(tools_array[i][1][2])) + '"],'
 			for i in xrange(0, 10):
 				response += '["' + fingers_array[i][0] + '-x","' + str(int(fingers_array[i][1][0] + 50)) + '"],' \
                                             '["' + fingers_array[i][0] + '-y","' + str(int((fingers_array[i][1][1] - 220) * 1.6)) + '"],' \
