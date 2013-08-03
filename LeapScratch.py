@@ -32,8 +32,8 @@ elif plat == 'Windows':
 
 import Leap
 
-hands_array = [['hand-one',[0,0,0]],
-	       ['hand-two',[0,0,0]]]
+hands_array = [['hand-one',[0,0,0],'false'],
+	       ['hand-two',[0,0,0],'false']]
 
 tools_array = [['tool-one',[0,0,0]],
 	       ['tool-two',[0,0,0]]]
@@ -84,6 +84,8 @@ class LeapListener(Leap.Listener):
 
 			fingers = hand[i].fingers
 			if not fingers.empty:
+				if fingers.__len__() > 3: hands_array[i][2] = 'true'
+				else: hands_array[i][2] = 'false'
 				count = i * 5
 				for finger in fingers:
 					if not plat == 'Linux':
@@ -97,7 +99,8 @@ class LeapListener(Leap.Listener):
 			for i in xrange(0, 2):
 				response += '["' + hands_array[i][0] + '-x","' + str(int(hands_array[i][1][0] + 50)) + '"],' \
 					    '["' + hands_array[i][0] + '-y","' + str(int((hands_array[i][1][1] - 220) * 1.6)) + '"],' \
-					    '["' + hands_array[i][0] + '-z","' + str(int(hands_array[i][1][2])) + '"],'
+					    '["' + hands_array[i][0] + '-z","' + str(int(hands_array[i][1][2])) + '"],' \
+					    '["' + hands_array[i][0] + '-open",' + hands_array[i][2] + '],'
 			for i in xrange(0, 2):
 				response += '["' + tools_array[i][0] + '-x","' + str(int(tools_array[i][1][0])) + '"],' \
 					    '["' + tools_array[i][0] + '-y","' + str(int((tools_array[i][1][1] - 220) * 1.6)) + '"],' \
